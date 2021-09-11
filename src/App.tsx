@@ -13,53 +13,24 @@ import { store, persistor } from "./store/index";
 
 
 import Home from './pages/Home'
-
+import Cadastro from "./pages/Cadastro";
+import Login from "./pages/Login";
 
 const App: React.FC = () => {
   return (
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
         <Router>
-          <div>
-            <nav>
-              <ul>
-                <li>
-                  <Link to="/">Home</Link>
-                </li>
-                <li>
-                  <Link to="/about">About</Link>
-                </li>
-                <li>
-                  <Link to="/users">Users</Link>
-                </li>
-              </ul>
-            </nav>
-
-            <Switch>
-              <Route path="/about">
-                <About />
-              </Route>
-              <Route path="/users">
-                <Users />
-              </Route>
-              <Route path="/">
-                <Home />
-              </Route>
-            </Switch>
-          </div>
+          <Switch>
+            <Route path="/home" exact component={Home} />
+            <Route path="/" exact component={Login} />
+            <Route path="/cadastro" exact component={Cadastro} />
+          </Switch>
         </Router>
       </PersistGate>
     </Provider>
   );
 }
 
-
-function About() {
-  return <h2>About</h2>;
-}
-
-function Users() {
-  return <h2>Users</h2>;
-}
 
 export default App
