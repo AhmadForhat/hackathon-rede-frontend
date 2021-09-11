@@ -1,4 +1,4 @@
-import LoginSvg from './login.svg';
+import CadastroSvg from './cadastro.svg';
 
 import {
   Container,
@@ -9,18 +9,17 @@ import {
   ContentInput,
   Label,
   Input,
-  ContentResetPassword,
   LabelMin,
   Button
-} from "./styles";
+} from "../Login/styles";
 
-const Login: React.FC = () => {
+const Cadastro: React.FC = () => {
   return (
     <Container>
-      <Logo src={LoginSvg} alt="login" />
+      <Logo src={CadastroSvg} alt="cadastro" />
 
       <Card>
-        <Title>Login</Title>
+        <Title>Criar conta</Title>
 
         <Form>
           <ContentInput>
@@ -33,17 +32,18 @@ const Login: React.FC = () => {
             <Input required type="password" placeholder="Digite sua senha" />
           </ContentInput>
 
-          <ContentResetPassword>
-            <LabelMin to="/">Esqueceu a senha?</LabelMin>
-          </ContentResetPassword>
+          <ContentInput>
+            <Label>Confirmar senha</Label>
+            <Input required type="password" placeholder="Digite sua senha" />
+          </ContentInput>
 
-          <Button type="submit">Entrar</Button>
+          <Button type="submit">Cadastrar</Button>
 
-          <LabelMin to="/cadastro">Ainda não tem uma conta?</LabelMin>
+          <LabelMin to="/">Já possui uma conta?</LabelMin>
         </Form>
       </Card>
     </Container>
   );
 }
 
-export default Login
+export default Cadastro
