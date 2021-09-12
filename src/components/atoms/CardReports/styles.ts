@@ -3,13 +3,15 @@ import styled from 'styled-components';
 export const Container = styled.div`
   padding: 0;
   margin: 0;
-  height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
 `
 
 export const Card = styled.div`
+  display:flex;
+  flex-direction: column;
+
   border-radius: 10px;
   padding: 10px;
   min-height: 110px;

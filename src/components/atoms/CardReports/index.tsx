@@ -9,11 +9,18 @@ import {
   Anexts,
 } from "./styles";
 
+
 import { Clock, MessageCircle, Paperclip, AlignLeft } from "react-feather";
+import { useHistory } from "react-router";
 
 const CardReports: React.FC = () => {
+  const history = useHistory()
+
+  function handleClick(id: string) {
+    history.push(`/reportes/${id}`)
+  }
   return (
-    <Container>
+    <Container onClick={() => handleClick('123')}>
       <Card>
         <Title>User Profile (View e editing)</Title>
 
