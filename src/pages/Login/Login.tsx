@@ -1,4 +1,4 @@
-import LoginSvg from './login.svg';
+import LoginSvg from './image/login.svg';
 
 import {
   Container,
