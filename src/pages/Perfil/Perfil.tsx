@@ -1,5 +1,4 @@
 import { Flag, Info, Settings, LogOut } from "react-feather";
-import Pedro from "./pedro.png";
 
 import {
   Container,
@@ -7,7 +6,6 @@ import {
   Article,
   Title,
   Subtitle,
-  Img,
   Section,
   ButtonInfos,
   ButtonLogout,
@@ -22,8 +20,6 @@ const Perfil: React.FC = () => {
           <Title>Pedro</Title>
           <Subtitle>Soluções de contorno</Subtitle>
         </Article>
-
-        <Img src={Pedro} alt="Usuário" />
       </ContentPerfil>
 
       <Section>

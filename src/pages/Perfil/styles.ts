@@ -30,20 +30,6 @@ export const Title = styled.h1`
 export const Subtitle = styled.span`
   color: ${({ theme }) => theme.colors.gray};
   font: normal normal normal 22px 'Poppins', sans-serif;
-  display: -webkit-box;
-  max-width: 225px;
-  -webkit-line-clamp: 1;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-  text-overflow: ellipsis;
-`
-export const Img = styled.img`
-  width: 74px;
-  height: auto;
-  object-fit: contain;
-  border: 2px solid ${({ theme }) => theme.colors.secondary};
-  border-radius: 100%;
-  padding: 3.5px;
 `
 
 export const Section = styled.section`

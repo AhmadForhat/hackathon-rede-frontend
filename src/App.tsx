@@ -25,12 +25,13 @@ const App: React.FC = () => {
     <ApolloProvider>
       <Provider store={store}>
         <PersistGate loading={null} persistor={persistor}>
-        <ThemeProvider theme={themes}>
-          <GlobalStyle />
+          <ThemeProvider theme={themes}>
+            <GlobalStyle />
             <Router>
               <Switch>
                 <Route path="/home" exact component={Home} />
                 <Route path="/" exact component={Login} />
+                <Route path="/perfil" exact component={Perfil} />
                 <Route path="/cadastro" exact component={Cadastro} />
               </Switch>
             </Router>
