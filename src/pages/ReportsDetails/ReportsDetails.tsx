@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
-
 import { useParams } from "react-router-dom";
-import { getReportById } from "services/reports";
-import { ThumbsUp, MessageCircle } from "react-feather";
+import { MessageCircle } from "react-feather";
+import { gql, useQuery } from '@apollo/client'
 
+import { getReportById } from "services/reports";
 import Card from "components/atoms/Card";
 import Header from "components/molecules/Header";
 import InfoReport from "components/molecules/InfoReport";
@@ -33,7 +33,25 @@ interface Report {
   endereco: string;
 }
 
+const FETCH_POST_QUERY = gql`
+  {
+    getPosts {
+      id
+      body {
+        title
+        image
+        comment
+        adderss
+      }
+      createdAt
+      username
+      commentCount
+    }
+  }
+`
+
 const ReportsDetail: React.FC = () => {
+  const { loading, data: post, error } = useQuery(FETCH_POST_QUERY)
   const [data, setData] = useState<Report | null>(null);
 
   const { id } = useParams<Params>();

@@ -1,45 +1,50 @@
+import { useHistory } from "react-router";
+import {
+  Clock,
+  MessageCircle,
+} from "react-feather";
+import moment from 'moment'
+
+import { PostProps } from 'pages/Reports'
 import {
   Container,
+  ContainerTitles,
   Title,
   ContentInfosDate,
   DescriptionDate,
   Card,
-  ContentInfos,
   Comments,
-  Anexts,
 } from "./styles";
 
+moment.locale('pt-br')
 
-import { Clock, MessageCircle, Paperclip, AlignLeft } from "react-feather";
-import { useHistory } from "react-router";
-
-const CardReports: React.FC = () => {
+const CardReports: React.FC<PostProps> = ({
+  body,
+  id,
+  username,
+  createdAt,
+  commentCount
+}) => {
   const history = useHistory()
 
   function handleClick(id: string) {
     history.push(`/reportes/${id}`)
   }
   return (
-    <Container onClick={() => handleClick('123')}>
+    <Container onClick={() => handleClick(id)}>
       <Card>
-        <Title>User Profile (View e editing)</Title>
-
+        <ContainerTitles>
+          <Title>{body.title}</Title>
+          <Title>{username}</Title>
+        </ContainerTitles>
         <ContentInfosDate>
           <DescriptionDate>
-            <Clock /> 2 Aug
+            <Clock /> {moment(new Date(createdAt)).format('DD/MM')}
           </DescriptionDate>
-        </ContentInfosDate>
-
-        <ContentInfos>
           <Comments>
-            <MessageCircle /> 12
+            <MessageCircle /> {commentCount}
           </Comments>
-
-          <Anexts>
-            <Paperclip />
-            <AlignLeft />
-          </Anexts>
-        </ContentInfos>
+        </ContentInfosDate>
       </Card>
     </Container>
   );

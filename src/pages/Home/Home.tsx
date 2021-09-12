@@ -64,7 +64,7 @@ const Home: React.FC = () => {
         </ContainerMap>
       </Card>
       <FooterButton onClick={handleToReport}>
-        Reportar
+        Reportes
       </FooterButton>
     </Wrapper>
   )
