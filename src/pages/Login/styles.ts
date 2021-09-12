@@ -1,4 +1,6 @@
 import styled from 'styled-components';
+import { Form } from '@unform/web'
+
 
 import { Link } from 'react-router-dom';
 
@@ -33,7 +35,7 @@ export const Title = styled.h1`
   margin-bottom: 30px;
 `
 
-export const Form = styled.form`
+export const FormCustom = styled(Form)`
   display: flex;
   flex-direction: column;
 `
@@ -42,11 +44,6 @@ export const ContentInput = styled.div`
   margin-bottom: 20px;
   display: flex;
   flex-direction: column;
-`
-
-export const Label = styled.label`
-  margin-bottom: 4px;
-  font: normal normal bold 18px 'Poppins', sans-serif;
 `
 
 export const Input = styled.input`

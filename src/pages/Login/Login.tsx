@@ -1,20 +1,58 @@
-import LoginSvg from './image/login.svg';
+import React, { useRef } from 'react';
+import LoginSvg from './login.svg';
+
+import * as Yup from 'yup';
+import { FormHandles } from '@unform/core';
+
+import getValidationErrors from '../../utils/getValidationsErrors';
+
+import LabelInput from '../../components/atoms/LabelInput';
+import InputLine from '../../components/atoms/InputLine';
 
 import {
   Container,
   Logo,
   Card,
   Title,
-  Form,
+  FormCustom,
   ContentInput,
-  Label,
-  Input,
   ContentResetPassword,
   LabelMin,
   Button
 } from "./styles";
 
 const Login: React.FC = () => {
+
+  const formRef = useRef<FormHandles>(null);
+
+  const handleFormSubmit = async (data: any) => {
+    try {
+      formRef.current && formRef.current.setErrors({});
+
+      const schema = Yup.object().shape({
+        email: Yup.string()
+          .required('Digite o Email')
+          .email('Digite um email válido'),
+        password: Yup.string().required('Digite a senha'),
+      });
+
+      await schema.validate(data, {
+        abortEarly: false,
+      });
+
+
+
+      console.log(data)
+
+    } catch (err) {
+      if (err instanceof Yup.ValidationError) {
+        const errors = getValidationErrors(err);
+        formRef.current && formRef.current.setErrors(errors);
+        return;
+      }
+    }
+  }
+
   return (
     <Container>
       <Logo src={LoginSvg} alt="login" />
@@ -22,15 +60,15 @@ const Login: React.FC = () => {
       <Card>
         <Title>Login</Title>
 
-        <Form>
+        <FormCustom ref={formRef} onSubmit={handleFormSubmit}>
           <ContentInput>
-            <Label>Email</Label>
-            <Input required type="email" placeholder="Digite seu email" />
+            <LabelInput>Email</LabelInput>
+            <InputLine type="email" name="email" placeholder="Digite seu email" />
           </ContentInput>
 
           <ContentInput>
-            <Label>Senha</Label>
-            <Input required type="password" placeholder="Digite sua senha" />
+            <LabelInput>Senha</LabelInput>
+            <InputLine type="password" name="password" placeholder="Digite sua senha" />
           </ContentInput>
 
           <ContentResetPassword>
@@ -40,7 +78,7 @@ const Login: React.FC = () => {
           <Button type="submit">Entrar</Button>
 
           <LabelMin to="/cadastro">Ainda não tem uma conta?</LabelMin>
-        </Form>
+        </FormCustom>
       </Card>
     </Container>
   );
