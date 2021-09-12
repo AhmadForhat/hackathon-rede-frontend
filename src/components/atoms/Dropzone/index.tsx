@@ -2,11 +2,21 @@ import React, { useEffect, useRef, useState } from 'react';
 import { useDropzone } from 'react-dropzone';
 import { useField } from '@unform/core';
 
-export default function ReactDropzoneInput({ name }) {
-  const inputRef = useRef(null);
-  const { fieldName, registerField, defaultValue = [] } = useField(name);
+import FileInfo from './components/FileInfo';
 
-  const [acceptedFiles, setAcceptedFiles] = useState(defaultValue);
+interface Props {
+  name: string;
+}
+
+interface InputRefProps extends HTMLInputElement {
+  acceptedFiles: File[];
+}
+
+export default function ReactDropzoneInput({ name }: Props) {
+
+  const inputRef = useRef<InputRefProps>(null);
+  const { fieldName, registerField, defaultValue = [] } = useField(name);
+  const [acceptedFiles, setAcceptedFiles] = useState<File[]>(defaultValue);
 
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
     accept: 'image/*',
@@ -17,37 +27,38 @@ export default function ReactDropzoneInput({ name }) {
       }
     },
   });
-
   useEffect(() => {
     registerField({
       name: fieldName,
       ref: inputRef.current,
-      getValue: (ref) => {
+      getValue: (ref: InputRefProps) => {
         return ref.acceptedFiles || [];
       },
-      clearValue: (ref) => {
+      clearValue: (ref: InputRefProps) => {
         ref.acceptedFiles = [];
         setAcceptedFiles([]);
       },
-      setValue: (ref, value) => {
+      setValue: (ref: InputRefProps, value) => {
         ref.acceptedFiles = value;
         setAcceptedFiles(value);
       },
     });
   }, [fieldName, registerField]);
-
   return (
     <div {...getRootProps()} onClick={() => inputRef.current?.click()}>
       <input {...getInputProps()} accept="image/*" ref={inputRef} />
-
       {acceptedFiles.length !== 0 && (
-        <ul>
+        <>
           {acceptedFiles.map(file => (
-            <li key={file.name}>{file.name}</li>
+            <FileInfo
+              key={file.name}
+              onDelete={() => console.log('ola')}
+              src={URL.createObjectURL(file)}
+              fileName={file?.name}
+            />
           ))}
-        </ul>
+        </>
       )}
-
       {isDragActive ? (
         <p>Drop the files here ...</p>
       ) : (

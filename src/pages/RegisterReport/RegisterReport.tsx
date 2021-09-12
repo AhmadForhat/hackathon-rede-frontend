@@ -6,6 +6,7 @@ import Wrapper from 'components/atoms/Wrapper'
 import FooterButton from 'components/molecules/FooterButton';
 import UploadArea from 'components/molecules/UploadArea';
 import Input from 'components/molecules/Input';
+import Dropzone from 'components/atoms/Dropzone';
 
 import { FormContainer, ContainerInputs } from './styles'
 
@@ -24,6 +25,10 @@ const RegisterReport: React.FC = () => {
             <UploadArea
               name='upload'
               label='Insira a image do report'
+            />
+            <Dropzone
+              name='upload'
+              // label='Insira a image do report'
             />
             <Input
               label='Titulo'
