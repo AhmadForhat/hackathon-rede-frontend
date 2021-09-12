@@ -1,21 +1,22 @@
+import React from 'react'
+
+import Button from 'components/atoms/Button'
+import CardReports from 'components/atoms/CardReports';
+import Header from 'components/molecules/Header';
+
 import {
   Container,
-  Title,
-  SubTitle,
   Card,
-  ButtonReporte,
   ContentButtonReport,
 } from "./styles";
-
-import CardReports from '../../components/atoms/CardReports';
 
 const Reports: React.FC = () => {
   return (
     <Container>
-      <Title>São Paulo</Title>
-
-      <SubTitle>Reportes realizados</SubTitle>
-
+      <Header
+        title='Reportes realizados'
+        to='/'
+      />
       <Card>
         <CardReports />
         <CardReports />
@@ -26,7 +27,7 @@ const Reports: React.FC = () => {
       </Card>
 
       <ContentButtonReport>
-        <ButtonReporte>Cadastrar Reporte</ButtonReporte>
+        <Button>Cadastrar Reporte</Button>
       </ContentButtonReport>
     </Container>
   );

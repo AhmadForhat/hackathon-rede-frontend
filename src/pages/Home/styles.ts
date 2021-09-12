@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from 'styled-components'
 
 export const Container = styled.div`
   padding: 0;
@@ -10,19 +10,22 @@ export const Container = styled.div`
 
 export const Card = styled.div`
   border-radius: 20px 20px 0px 0px;
-  padding: 10px 30px;
   height: 100%;
   background: ${({ theme }) => theme.colors.whiteSecondary};
   box-shadow: 0px 4px 4px 3px rgba(0, 0, 0, 0.25);
   overflow: auto;
   display: flex;
   flex-direction: column;
-  padding-bottom: 40px;
-  gap: 20px;
-  margin-bottom: 80px;
+  margin-bottom: 70px;
 `
 
-export const ContentButtonReport = styled.div`
+export const ContainerMap = styled.div`
+  width: 100%;
+  height: 100vh;
+`
+
+export const ContainerButton = styled.div`
+  z-index: 1600;
   box-sizing: border-box;
   position: fixed;
   bottom: 0px;
@@ -33,7 +36,7 @@ export const ContentButtonReport = styled.div`
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 
   button {
-    margin: 0 auto;
     max-width: 800px;
+    margin: 0 auto;
   }
 `

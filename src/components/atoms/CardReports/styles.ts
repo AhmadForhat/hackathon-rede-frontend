@@ -11,7 +11,7 @@ export const Container = styled.div`
 
 export const Card = styled.div`
   border-radius: 10px;
-  margin-top: 20px;
+  padding: 10px;
   min-height: 106px;
   max-height: 106px;
   width: 98%;
