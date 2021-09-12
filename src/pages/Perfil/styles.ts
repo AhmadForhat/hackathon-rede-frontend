@@ -5,44 +5,16 @@ interface Ibutton {
   color: string;
 }
 
-export const Container = styled.div`
-  padding: 30px 20px;
-`
-
-export const ContentPerfil = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-`
-
-export const Article = styled.article`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-`
-
-export const Title = styled.h1`
-  font: normal normal bold 24px 'Poppins', sans-serif;
-  margin: 0;
-  color: ${({ theme }) => theme.colors.ink};
-`
-
-export const Subtitle = styled.span`
-  color: ${({ theme }) => theme.colors.gray};
-  font: normal normal normal 22px 'Poppins', sans-serif;
-`
-
 export const Section = styled.section`
   display: flex;
   flex-direction: column;
+  gap: 10px;
   width: 100%;
-  margin-top: 50px;
 `
 
 export const ButtonInfos = styled.button<Ibutton>`
   border: none;
   background: none;
-  margin-top: 10px;
   height: 40px;
   display: flex;
   align-items: center;
@@ -56,8 +28,8 @@ export const ButtonInfos = styled.button<Ibutton>`
     color: ${props => props.color && props.color};
     border-radius: 100%;
     padding: 7px;
-    width: 18px;
-    height: 18px;
+    width: 32px;
+    height: 32px;
     margin-right: 14px;
   }
 
@@ -96,7 +68,7 @@ export const ContentButton = styled.div`
 export const ButtonLogout = styled.button`
   width: 140px;
   height: 40px;
-  font: normal normal bold 18px 'Poppins', sans-serif;
+  font: normal normal bold 14px 'Poppins', sans-serif;
   color: ${({ theme }) => theme.colors.inkLighter};
   border-radius: 8px;
   padding: 9px;
@@ -114,9 +86,9 @@ export const ButtonLogout = styled.button`
   }
 
   &:hover {
-    color: ${({ theme }) => theme.colors.primaryDarker};
+    color: ${({ theme }) => theme.colors.danger};
     svg {
-      color: ${({ theme }) => theme.colors.primaryDarker};
+      color: ${({ theme }) => theme.colors.danger};
     }
   }
 `
