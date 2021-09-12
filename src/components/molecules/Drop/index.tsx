@@ -5,16 +5,21 @@ import LabelInput from 'components/atoms/LabelInput';
 
 import { Container } from './styles';
 
-const Drop: React.FC = ({ name, label }: any) => {
+interface DropProps extends React.HTMLAttributes<HTMLInputElement> {
+    label?: string
+    name: string
+}
+
+const Drop: React.FC<DropProps> = ({ name, label, ...props }) => {
     return (
-        <>
+        <Container>
             {label && (
                 <LabelInput htmlFor={name}>
                     {label}
                 </LabelInput>
             )}
             <ReactDropzoneInput name={name} />
-        </>
+        </Container>
     )
 }
 
