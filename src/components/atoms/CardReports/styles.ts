@@ -3,18 +3,19 @@ import styled from 'styled-components';
 export const Container = styled.div`
   padding: 0;
   margin: 0;
-  height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
 `
 
 export const Card = styled.div`
+  display:flex;
+  flex-direction: column;
+
   border-radius: 10px;
   padding: 10px;
-  min-height: 106px;
-  max-height: 106px;
-  width: 98%;
+  height: 120px;
+  width: 100%;
   background: ${({ theme }) => theme.colors.white};
   box-shadow: 0px 0px 0px 2px rgba(0, 0, 0, 0.1);
 `
