@@ -60,7 +60,7 @@ const Cadastro: React.FC = () => {
 
           <Button isLoading={loading} type="submit">Entrar</Button>
 
-          <LabelMin to="/">Já possui uma conta?</LabelMin>
+          <LabelMin to="/login">Já possui uma conta?</LabelMin>
         </FormCustom>
       </Card>
     </Container>
