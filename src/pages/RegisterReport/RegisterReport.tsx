@@ -6,7 +6,7 @@ import Wrapper from 'components/atoms/Wrapper'
 import FooterButton from 'components/molecules/FooterButton';
 import UploadArea from 'components/molecules/UploadArea';
 import Input from 'components/molecules/Input';
-import Dropzone from 'components/atoms/Dropzone';
+import Dropzone from 'components/molecules/Drop';
 
 import { FormContainer, ContainerInputs } from './styles'
 
@@ -22,13 +22,9 @@ const RegisterReport: React.FC = () => {
       <Card>
         <FormContainer ref={formRef} onSubmit={(data) => console.log(data)}>
           <ContainerInputs>
-            <UploadArea
-              name='upload'
-              label='Insira a image do report'
-            />
             <Dropzone
               name='upload'
-              // label='Insira a image do report'
+              label='Insira a imagem do report'
             />
             <Input
               label='Titulo'

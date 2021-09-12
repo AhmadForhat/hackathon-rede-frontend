@@ -5,6 +5,7 @@ const themes = {
     inkLighter: '#535D72',
     gray: '#868A94',
     grayLight: '#C6C6C6',
+    grayDarker: '#333',
     ice: '#F0F0F0',
     whiteSecondary: '#FEFEFE',
     white: '#FFFFFF',
@@ -24,7 +25,7 @@ const themes = {
     successLight: '#86E0A4',
     successLighter: '#A2F0BD',
     danger: '#F38080',
-    alert: '#FFECB0'
+    alert: '#FFECB0',
   },
   fonts: {
     family: {

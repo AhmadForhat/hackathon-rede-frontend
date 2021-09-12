@@ -3,6 +3,8 @@ import { useDropzone } from 'react-dropzone';
 import { useField } from '@unform/core';
 
 import FileInfo from './components/FileInfo';
+import { Container } from './styles';
+
 
 interface Props {
   name: string;
@@ -44,26 +46,26 @@ export default function ReactDropzoneInput({ name }: Props) {
       },
     });
   }, [fieldName, registerField]);
+
   return (
-    <div {...getRootProps()} onClick={() => inputRef.current?.click()}>
+    <Container {...getRootProps()} haveItems={acceptedFiles.length} onClick={() => !acceptedFiles.length && inputRef.current?.click()}>
       <input {...getInputProps()} accept="image/*" ref={inputRef} />
-      {acceptedFiles.length !== 0 && (
+      {acceptedFiles.length !== 0 ? (
         <>
           {acceptedFiles.map(file => (
             <FileInfo
               key={file.name}
-              onDelete={() => console.log('ola')}
+              onDelete={() => setAcceptedFiles([])}
               src={URL.createObjectURL(file)}
               fileName={file?.name}
             />
           ))}
         </>
-      )}
-      {isDragActive ? (
-        <p>Drop the files here ...</p>
+      ) : isDragActive ? (
+        <p>Solte seu arquivo aqui ...</p>
       ) : (
-        <p>Drag drop some files here, or click to select files</p>
+        <p>Arraste seu arquivo aqui ou <strong>clique para buscar</strong> em seu computador</p>
       )}
-    </div>
+    </Container>
   );
 };
