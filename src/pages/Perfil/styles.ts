@@ -66,6 +66,7 @@ export const ContentButton = styled.div`
 `
 
 export const ButtonLogout = styled.button`
+  cursor: pointer;
   width: 140px;
   height: 40px;
   font: normal normal bold 14px 'Poppins', sans-serif;

@@ -40,6 +40,7 @@ export const Container = styled.div<ContainerProps>`
 `
 
 export const ButtonMenu = styled.button<ButtonMenuProps>`
+  cursor: pointer;
   display: ${({visible}) => visible ? 'flex' : 'none'};
   padding: 20px;
   outline: none;
