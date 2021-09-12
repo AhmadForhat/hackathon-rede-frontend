@@ -4,8 +4,7 @@ import ReactDropzoneInput from 'components/atoms/Dropzone';
 import LabelInput from 'components/atoms/LabelInput';
 
 import { Container } from './styles';
-
-interface DropProps extends React.HTMLAttributes<HTMLInputElement> {
+interface DropProps extends React.HTMLAttributes<HTMLTextAreaElement> {
     label?: string
     name: string
 }
@@ -18,7 +17,7 @@ const Drop: React.FC<DropProps> = ({ name, label, ...props }) => {
                     {label}
                 </LabelInput>
             )}
-            <ReactDropzoneInput name={name} />
+            <ReactDropzoneInput name={name} {...props} />
         </Container>
     )
 }
