@@ -3,10 +3,12 @@ import * as Yup from 'yup';
 import { FormHandles } from '@unform/core';
 import { gql, useMutation } from '@apollo/client'
 
-import getValidationErrors from '../../utils/getValidationsErrors';
+import getValidationErrors from 'utils/getValidationsErrors';
 
-import LabelInput from '../../components/atoms/LabelInput';
-import InputLine from '../../components/atoms/InputLine';
+import LabelInput from 'components/atoms/LabelInput';
+import InputLine from 'components/atoms/InputLine';
+import Button from 'components/atoms/Button'
+import ErrorMessage from 'components/atoms/ErrorMessage'
 
 import LoginSvg from './login.svg';
 
@@ -19,7 +21,6 @@ import {
   ContentInput,
   ContentResetPassword,
   LabelMin,
-  Button
 } from "./styles";
 
 const LOGIN_USER = gql`
@@ -42,7 +43,7 @@ const LOGIN_USER = gql`
 
 const Login: React.FC = () => {
   const [errorMessage, setErrorMessage] = useState('')
-  const [addUser, { data, loading, error }] = useMutation(LOGIN_USER, {
+  const [addUser, { loading }] = useMutation(LOGIN_USER, {
       onError(error){
         setErrorMessage(error.message)
       }
@@ -64,6 +65,7 @@ const Login: React.FC = () => {
       });
 
       addUser({variables: data})
+
     } catch (err) {
       if (err instanceof Yup.ValidationError) {
         const errors = getValidationErrors(err);
@@ -95,9 +97,9 @@ const Login: React.FC = () => {
             <LabelMin to="/">Esqueceu a senha?</LabelMin>
           </ContentResetPassword>
 
-          {errorMessage && <p>{errorMessage}</p>}
+          {errorMessage && <ErrorMessage>{errorMessage}</ErrorMessage>}
 
-          <Button type="submit">Entrar</Button>
+          <Button isLoading={loading} type="submit">Entrar</Button>
 
           <LabelMin to="/cadastro">Ainda não tem uma conta?</LabelMin>
         </FormCustom>
