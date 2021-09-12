@@ -5,6 +5,10 @@ const GlobalStyle = createGlobalStyle`
     margin: 0;
     padding: 0;
   }
+
+  *, html, body {
+    font-family: 'Poppins', sans-serif;
+  }
 `
 
 export default GlobalStyle;
