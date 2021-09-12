@@ -5,7 +5,7 @@ import { Form } from '@unform/web'
 import { Link } from 'react-router-dom';
 
 export const Container = styled.div`
-  background: #F78357;
+  background: ${({ theme }) => theme.colors.secondary};
   padding: 0;
   margin: 0;
   height: 100vh;
@@ -23,13 +23,13 @@ export const Card = styled.div`
   border-radius: 20px 20px 0px 0px;
   padding: 10px 30px;
   height: 100%;
-  background: #FEFEFE;
+  background: ${({ theme }) => theme.colors.whiteSecondary};
   max-height: 100;
   overflow: auto;
 `
 
 export const Title = styled.h1`
-  color: #0A1530;
+  color: ${({ theme }) => theme.colors.ink};
   font: normal normal 700 24px 'Poppins', sans-serif;
   text-align: start;
   margin-bottom: 30px;
@@ -48,13 +48,13 @@ export const ContentInput = styled.div`
 
 export const Input = styled.input`
   border: none;
-  border-bottom: 1px solid #000000;
-  color: #0A1530;
+  border-bottom: 1px solid ${({ theme }) => theme.colors.ink};
+  color: ${({ theme }) => theme.colors.ink};
   outline: none;
   height: 28px;
 
   &::placeholder {
-    color: #c3c3c3;
+    color: ${({ theme }) => theme.colors.grayLight};
   }
 `
 
@@ -67,32 +67,33 @@ export const ContentResetPassword = styled.div`
 
 export const LabelMin = styled(Link)`
   text-align: center;
-  color: #0A1530;
+  color: ${({ theme }) => theme.colors.ink};
   text-decoration: none;
   font: normal normal bold 12px 'Roboto', sans-serif;
 
   &:hover {
-    color: #558EFA;
+    color: ${({ theme }) => theme.colors.primary};
   }
 `
 
 export const Button = styled.button`
   width: 100%;
-  color: #FFF;
+  color: ${({ theme }) => theme.colors.white};
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #558EFA;
-  border: 1px solid #558EFA;
+  background-color: ${({ theme }) => theme.colors.primary};
+  border: 1px solid ${({ theme }) => theme.colors.primary};
   border-radius: 8px;
   height: 40px;
   transition: all 0.3s linear;
   margin: 30px 0 25px;
   font: normal normal bold 18px 'Poppins', sans-serif;
+  cursor: pointer;
 
   &:hover {
-    background: #FFF;
-    color: #558EFA;
-    border: 1px solid #558EFA;
+    background: ${({ theme }) => theme.colors.white};
+    color: ${({ theme }) => theme.colors.primary};
+    border: 1px solid ${({ theme }) => theme.colors.primary};
   }
 `

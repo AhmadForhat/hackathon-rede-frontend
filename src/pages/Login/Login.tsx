@@ -1,13 +1,14 @@
-import React, { useRef } from 'react';
-import LoginSvg from './login.svg';
-
+import React, { useRef, useState } from 'react';
 import * as Yup from 'yup';
 import { FormHandles } from '@unform/core';
+import { gql, useMutation } from '@apollo/client'
 
 import getValidationErrors from '../../utils/getValidationsErrors';
 
 import LabelInput from '../../components/atoms/LabelInput';
 import InputLine from '../../components/atoms/InputLine';
+
+import LoginSvg from './login.svg';
 
 import {
   Container,
@@ -21,18 +22,40 @@ import {
   Button
 } from "./styles";
 
-const Login: React.FC = () => {
+const LOGIN_USER = gql`
+  mutation login(
+    $username: String!
+    $password: String!
+  ) {
+    login (
+      loginInput: {
+        username: $username
+        password: $password
+      }
+    ) {
+      id
+      username
+      token
+    }
+  }
+`
 
-  const formRef = useRef<FormHandles>(null);
+const Login: React.FC = () => {
+  const [errorMessage, setErrorMessage] = useState('')
+  const [addUser, { data, loading, error }] = useMutation(LOGIN_USER, {
+      onError(error){
+        setErrorMessage(error.message)
+      }
+  })
+  const formRef = useRef<FormHandles>(null)
 
   const handleFormSubmit = async (data: any) => {
+    setErrorMessage('')
     try {
-      formRef.current && formRef.current.setErrors({});
-      
+      formRef.current && formRef.current.setErrors({})
+
       const schema = Yup.object().shape({
-        email: Yup.string()
-          .required('Digite o Email')
-          .email('Digite um email válido'),
+        username: Yup.string().required('Digite o Usuário'),
         password: Yup.string().required('Digite a senha'),
       });
 
@@ -40,10 +63,7 @@ const Login: React.FC = () => {
         abortEarly: false,
       });
 
-    
-
-      console.log(data)
-
+      addUser({variables: data})
     } catch (err) {
       if (err instanceof Yup.ValidationError) {
         const errors = getValidationErrors(err);
@@ -62,8 +82,8 @@ const Login: React.FC = () => {
 
         <FormCustom ref={formRef} onSubmit={handleFormSubmit}>
           <ContentInput>
-            <LabelInput>Email</LabelInput>
-            <InputLine type="email" name="email" placeholder="Digite seu email" />
+            <LabelInput>Usuário</LabelInput>
+            <InputLine type="text" name="username" placeholder="Digite seu email" />
           </ContentInput>
 
           <ContentInput>
@@ -74,6 +94,8 @@ const Login: React.FC = () => {
           <ContentResetPassword>
             <LabelMin to="/">Esqueceu a senha?</LabelMin>
           </ContentResetPassword>
+
+          {errorMessage && <p>{errorMessage}</p>}
 
           <Button type="submit">Entrar</Button>
 
