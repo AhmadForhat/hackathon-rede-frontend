@@ -6,6 +6,7 @@ const themes = {
     gray: '#868A94',
     grayLight: '#C6C6C6',
     ice: '#F0F0F0',
+    whiteSecondary: '#FEFEFE',
     white: '#FFFFFF',
     primaryDarker: '#1447A8',
     primaryDark: '#2E65CE',
