@@ -15,42 +15,35 @@ const RegisterReport: React.FC = () => {
 
   return (
     <Wrapper>
-      <Header
-        title='Criar novo report'
-        to='/reportes'
-      />
-      <Card>
+      <Header title="Criar novo report" to="/reportes" />
+      <Card hasMarginBottom>
         <FormContainer ref={formRef} onSubmit={(data) => console.log(data)}>
           <ContainerInputs>
-            <Dropzone
-              name='upload'
-              label='Insira a imagem do report'
+            <Dropzone name="upload" label="Insira a imagem do reporte" />
+            <Input
+              label="Titulo"
+              name="title"
+              type="text"
+              placeholder="adicione um titulo"
             />
             <Input
-              label='Titulo'
-              name='title'
-              type='text'
-              placeholder='adicione um titulo'
-            />
-            <Input
-              label='Endereço'
-              name='address'
-              type='text'
-              placeholder='adicione um endereço'
+              label="Endereço"
+              name="address"
+              type="text"
+              placeholder="adicione um endereço"
             />
             <TextArea
-              label='Comentário'
-              name='comentario'
+              label="Comentário"
+              name="comentario"
+              placeholder="escreva um comentário"
               rows={5}
             />
           </ContainerInputs>
-          <FooterButton type='submit'>
-            Enviar
-          </FooterButton>
+          <FooterButton type="submit">Enviar</FooterButton>
         </FormContainer>
       </Card>
     </Wrapper>
-  )
+  );
 }
 
 export default RegisterReport
