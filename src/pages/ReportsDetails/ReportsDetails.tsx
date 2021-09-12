@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { useParams } from "react-router-dom";
 import { MessageCircle } from "react-feather";
 import { gql, useQuery } from '@apollo/client'
+import moment from "moment";
 
-import { getReportById } from "services/reports";
 import Card from "components/atoms/Card";
 import Header from "components/molecules/Header";
 import InfoReport from "components/molecules/InfoReport";
@@ -23,20 +23,9 @@ interface Params {
   id: string;
 }
 
-interface Report {
-  id: string;
-  idUser: string;
-  status: string;
-  photo: string;
-  comment: string;
-  title: string;
-  state: string;
-  endereco: string;
-}
-
 const FETCH_POST_QUERY = gql`
-  {
-    getPosts {
+  query getPost($postId: ID!) {
+    getPost(postId: $postId) {
       id
       body {
         title
@@ -49,23 +38,18 @@ const FETCH_POST_QUERY = gql`
       commentCount
     }
   }
-`
+`;
 
 const ReportsDetail: React.FC = () => {
-  const { loading, data: post, error } = useQuery(FETCH_POST_QUERY)
-  const [data, setData] = useState<Report | null>(null);
-
   const { id } = useParams<Params>();
 
-  useEffect(() => {
-    getReportById(id)
-      .then((data) => {
-        setData(data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }, [id]);
+  const { loading, data, error } = useQuery(FETCH_POST_QUERY, {
+    variables: { postId: id },
+  })
+
+  if(loading) return <h2>...looading</h2>
+
+  if(error) return <h2>Error</h2>
 
   return (
     <Container>
@@ -73,19 +57,20 @@ const ReportsDetail: React.FC = () => {
 
       <Content>
         <Card>
-          {data?.photo && <Image src={data.photo} />}
+          {data.getPost.body.image && <Image src={data.getPost.body.image} />}
 
           <ContentDescription>
             <Descriptions>
-              22 <MessageCircle />
+              {data.getPost.commentCount} <MessageCircle />
             </Descriptions>
           </ContentDescription>
 
           <CotainerInfos>
-            <InfoReport title="Titulo" content={data?.title} />
-            <InfoReport title="Status" content={data?.status} />
-            <InfoReport title="Endereço" content={data?.endereco} />
-            <InfoReport title="Comentário" content={data?.comment} />
+            <InfoReport title="Usuário" content={data.getPost.username} />
+            <InfoReport title="Criado no dia" content={moment(new Date(data.getPost.createdAt)).format('DD/MM/YY')} />
+            <InfoReport title="Titulo" content={data.getPost.body.title} />
+            <InfoReport title="Endereço" content={data.getPost.body.address} />
+            <InfoReport title="Comentário" content={data.getPost.body.comment} />
           </CotainerInfos>
 
           <ContainerButtons>

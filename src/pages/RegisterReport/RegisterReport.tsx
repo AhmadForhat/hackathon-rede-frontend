@@ -45,7 +45,7 @@ const RegisterReport: React.FC = () => {
   const handleSubmit = async (data: any) => {
     const result = await createPost({variables: {
       ...data,
-      image: 'teste'
+      image: 'https://images.unsplash.com/photo-1628191078376-f31a36c9f2cf?ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1051&q=80'
     }})
 
     history.push('/reportes')
