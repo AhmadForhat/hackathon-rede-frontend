@@ -16,11 +16,8 @@ const Reports: React.FC = () => {
 
   return (
     <Wrapper>
-      <Header
-        title='Reportes realizados'
-        to='/'
-      />
-      <Card hasPadding>
+      <Header title="Reportes realizados" to="/" />
+      <Card hasPadding hasMarginBottom>
         <CardReports />
         <CardReports />
         <CardReports />
