@@ -1,15 +1,22 @@
-import React from 'react'
+import React from "react";
 
-import { Container } from './styles'
+import { Container } from "./styles";
 
 interface CardProps extends React.HTMLAttributes<HTMLDivElement> {
-  hasPadding?: boolean
+  hasPadding?: boolean;
+  hasBoxShadow?: boolean;
+  hasMarginBottom?: boolean;
 }
 
-const Card: React.FC<CardProps> = ({hasPadding, ...props}) => {
+const Card: React.FC<CardProps> = ({ hasPadding, hasBoxShadow, hasMarginBottom, ...props }) => {
   return (
-    <Container hasPadding={hasPadding} {...props} />
-  )
-}
+    <Container
+      hasPadding={hasPadding}
+      hasBoxShadow={hasBoxShadow}
+      hasMarginBottom={hasMarginBottom}
+      {...props}
+    />
+  );
+};
 
-export default Card
+export default Card;
