@@ -49,8 +49,11 @@ const useLogin = () => {
       });
 
       const result = await loginUser({variables: data})
-      setLocalStorage('token', result?.data?.login?.token)
-      history.push('/home')
+
+      if(result?.data?.login?.token) {
+        setLocalStorage('token', result.data.login.token)
+        history.push('/')
+      }
 
     } catch (err) {
       if (err instanceof Yup.ValidationError) {

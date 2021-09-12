@@ -31,8 +31,8 @@ const App: React.FC = () => {
             <GlobalStyle />
             <Router>
               <Switch>
-                <Route path="/" exact component={Login} />
-                <Route path="/home" exact component={Home} />
+                <Route path="/" exact component={Home} />
+                <Route path="/login" exact component={Login} />
                 <Route path="/perfil" exact component={Perfil} />
                 <Route path="/cadastro" exact component={Cadastro} />
                 <Route path="/reports" exact component={Reports} />

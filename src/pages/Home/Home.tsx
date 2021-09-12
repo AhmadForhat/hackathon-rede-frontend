@@ -1,23 +1,31 @@
-import React, { useEffect } from 'react'
-import { useDispatch, useSelector } from "react-redux";
+import React, { useEffect, useState } from 'react'
+import { useHistory } from 'react-router-dom'
+
+import { getLocalStorage } from 'utils'
 import Map from '../../components/atoms/Map';
 
-
-import { RootState } from "./../../store/ducks/rootReducer";
-import * as UserActions from "./../../store/ducks/User/actions";
-
-
 const Home: React.FC = () => {
-  const dispatch = useDispatch();
-  const data = useSelector((state: RootState) => state.User);
-
-
+  const [coords, setCoords] = useState({
+    latitude: NaN,
+    longitude: NaN
+  })
+  const history = useHistory()
   useEffect(() => {
-    dispatch(UserActions.loadRequest({
-      id: 1,
-      name: 'Chrigor 2'
-    }))
-  }, [])
+    const token = getLocalStorage('token')
+
+    if(!token) {
+      history.push('/login')
+    } else {
+      const getPosition = (position: any) => {
+        setCoords({
+          latitude: position.coords.latitude,
+          longitude: position.coords.longitude,
+        })
+      }
+
+      navigator.geolocation.getCurrentPosition(getPosition)
+    }
+  }, [history])
 
   return (
     <div style={{ width: '100%', height: '100vh' }}>

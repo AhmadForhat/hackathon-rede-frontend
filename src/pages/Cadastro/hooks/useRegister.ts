@@ -56,8 +56,11 @@ const useRegister = () => {
       });
 
       const result = await registerUser({variables: data})
-      setLocalStorage('token', result?.data?.register?.token)
-      history.push('/home')
+
+      if(result?.data?.register?.token) {
+        setLocalStorage('token', result.data.register.token)
+        history.push('/')
+      }
 
     } catch (err) {
 
