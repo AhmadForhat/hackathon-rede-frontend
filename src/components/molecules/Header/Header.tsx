@@ -1,6 +1,7 @@
 import React from 'react'
 import { ArrowLeft } from 'react-feather'
 
+import Menu from 'components/molecules/MenuHamburger'
 import Link from 'components/atoms/Link'
 
 import {
@@ -22,12 +23,34 @@ const Header: React.FC<HeaderProps> = ({
   to
 }) => {
   return (
-    <Container>
-      {to && <Link to={to}><ArrowLeft size='16px'/> Voltar</Link>}
-      {subTitle && <SubTitle>{subTitle}</SubTitle>}
-      <Title>{title}</Title>
-      {children}
-    </Container>
+    <>
+      <Menu
+        options={[
+          {
+            to: '/',
+            text: 'Home'
+          },
+          {
+            to: '/reportes',
+            text: 'Reportes'
+          },
+          {
+            to: '/criar-reporte',
+            text: 'Criar Reporte'
+          },
+          {
+            to: '/perfil',
+            text: 'Perfil'
+          }
+        ]}
+      />
+      <Container>
+        {to && <Link to={to}><ArrowLeft size='16px'/> Voltar</Link>}
+        {subTitle && <SubTitle>{subTitle}</SubTitle>}
+        <Title>{title}</Title>
+        {children}
+      </Container>
+    </>
   )
 }
 

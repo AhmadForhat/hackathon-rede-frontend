@@ -18,6 +18,7 @@ export const Container = styled.div<Props>`
   color: ${({ theme }) => theme.colors.grayDarker};
   outline: none;
   transition: border 0.24s ease-in-out;
+  margin-top: 10px;
 
   p,
   strong {
