@@ -1,11 +1,35 @@
-import React from 'react'
+import {
+  Container,
+  Title,
+  SubTitle,
+  Card,
+  ButtonReporte,
+  ContentButtonReport,
+} from "./styles";
+
+import CardReports from '../../components/atoms/CardReports';
 
 const Reports: React.FC = () => {
   return (
-    <div>
+    <Container>
+      <Title>São Paulo</Title>
 
-    </div>
-  )
-}
+      <SubTitle>Reportes realizados</SubTitle>
 
-export default Reports
+      <Card>
+        <CardReports />
+        <CardReports />
+        <CardReports />
+        <CardReports />
+        <CardReports />
+        <CardReports />
+      </Card>
+
+      <ContentButtonReport>
+        <ButtonReporte>Cadastrar Reporte</ButtonReporte>
+      </ContentButtonReport>
+    </Container>
+  );
+};
+
+export default Reports;
