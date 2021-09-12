@@ -10,7 +10,7 @@ import InputLine from 'components/atoms/InputLine';
 import Button from 'components/atoms/Button'
 import ErrorMessage from 'components/atoms/ErrorMessage'
 
-import LoginSvg from './login.svg';
+import LoginSvg from './images/login.svg';
 
 import {
   Container,
@@ -43,7 +43,7 @@ const LOGIN_USER = gql`
 
 const Login: React.FC = () => {
   const [errorMessage, setErrorMessage] = useState('')
-  const [addUser, { loading }] = useMutation(LOGIN_USER, {
+  const [loginUser, { loading }] = useMutation(LOGIN_USER, {
       onError(error){
         setErrorMessage(error.message)
       }
@@ -64,7 +64,7 @@ const Login: React.FC = () => {
         abortEarly: false,
       });
 
-      addUser({variables: data})
+      loginUser({variables: data})
 
     } catch (err) {
       if (err instanceof Yup.ValidationError) {
