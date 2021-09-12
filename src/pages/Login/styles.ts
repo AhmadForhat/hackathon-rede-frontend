@@ -26,6 +26,7 @@ export const Card = styled.div`
   background: ${({ theme }) => theme.colors.whiteSecondary};
   max-height: 100;
   overflow: auto;
+  padding-bottom: 20px;
 `
 
 export const Title = styled.h1`
