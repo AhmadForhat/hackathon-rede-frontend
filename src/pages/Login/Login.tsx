@@ -28,7 +28,7 @@ const Login: React.FC = () => {
   const handleFormSubmit = async (data: any) => {
     try {
       formRef.current && formRef.current.setErrors({});
-      
+
       const schema = Yup.object().shape({
         email: Yup.string()
           .required('Digite o Email')
@@ -40,7 +40,7 @@ const Login: React.FC = () => {
         abortEarly: false,
       });
 
-    
+
 
       console.log(data)
 

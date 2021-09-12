@@ -89,6 +89,7 @@ export const Button = styled.button`
   transition: all 0.3s linear;
   margin: 30px 0 25px;
   font: normal normal bold 18px 'Poppins', sans-serif;
+  cursor: pointer;
 
   &:hover {
     background: #FFF;
