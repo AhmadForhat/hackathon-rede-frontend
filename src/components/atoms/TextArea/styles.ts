@@ -7,6 +7,8 @@ export const Container = styled.div`
     margin-top: 10px;
     width: 100%;
     border: 1px solid ${({ theme }) => theme.colors.grayDarker};
+    border-radius: 8px;
+    margin-top: 10px;
     font-family: ${({theme}) => theme.fonts.family.primary};
     font-size: ${({theme}) => theme.fonts.size.medium};
     padding: 10px;

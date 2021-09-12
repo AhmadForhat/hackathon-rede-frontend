@@ -21,7 +21,7 @@ export const Logo = styled.img`
 export const Card = styled.div`
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 20px 20px 0px 0px;
-  padding: 10px 30px;
+  padding: 10px 30px 20px;
   height: 100%;
   background: ${({ theme }) => theme.colors.whiteSecondary};
   max-height: 100;
