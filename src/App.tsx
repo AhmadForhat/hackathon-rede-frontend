@@ -9,18 +9,18 @@ import {
   Route,
 } from "react-router-dom";
 
-import { store, persistor } from "./store/index";
+import { store, persistor } from "store/index";
+import themes from 'styles/themes'
+import GlobalStyle from 'styles/GlobalStyles';
+import ApolloProvider from 'Apollo/ApolloProvider'
 
-import themes from './styles/themes'
-import GlobalStyle from './styles/GlobalStyles';
-import ApolloProvider from './Apollo/ApolloProvider'
-
-import Home from './pages/Home'
-import Cadastro from "./pages/Cadastro";
-import Login from "./pages/Login";
-import Perfil from "./pages/Perfil";
-import NotFound from "./pages/NotFound";
-import Reports from "./pages/Reports";
+import Home from 'pages/Home'
+import Cadastro from "pages/Cadastro";
+import Login from "pages/Login";
+import Perfil from "pages/Perfil";
+import NotFound from "pages/NotFound";
+import Reports from "pages/Reports";
+import Error from 'pages/Error'
 
 const App: React.FC = () => {
   return (
@@ -31,12 +31,13 @@ const App: React.FC = () => {
             <GlobalStyle />
             <Router>
               <Switch>
-                <Route path="/home" exact component={Home} />
                 <Route path="/" exact component={Login} />
+                <Route path="/home" exact component={Home} />
                 <Route path="/perfil" exact component={Perfil} />
                 <Route path="/cadastro" exact component={Cadastro} />
-                <Route path="*" component={NotFound} />
                 <Route path="/reports" exact component={Reports} />
+                <Route path='/erro' exact component={Error} />
+                <Route path="*" component={NotFound} />
               </Switch>
             </Router>
           </ThemeProvider>
