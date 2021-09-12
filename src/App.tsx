@@ -18,6 +18,7 @@ import ApolloProvider from './Apollo/ApolloProvider'
 import Home from './pages/Home'
 import Cadastro from "./pages/Cadastro";
 import Login from "./pages/Login";
+import Perfil from "./pages/Perfil";
 
 const App: React.FC = () => {
   return (
