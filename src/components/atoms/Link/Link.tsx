@@ -4,14 +4,16 @@ import { LinkContainer } from './styles'
 
 interface LinkProps {
   to: string;
+  actived?: boolean
 }
 
 const Link: React.FC<LinkProps> = ({
   to,
+  actived,
   ...props
 }) => {
   return (
-    <LinkContainer to={to} {...props} />
+    <LinkContainer actived={actived} to={to} {...props} />
   )
 }
 
