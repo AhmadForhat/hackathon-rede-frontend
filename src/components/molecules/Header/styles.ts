@@ -16,7 +16,7 @@ export const SubTitle = styled.h3`
 `
 
 export const Title = styled.h2`
-  margin: 0;
+  margin: 10px 0 0;
   font-family: ${({theme}) => theme.fonts.family.secondary};
   font-size: ${({theme}) => theme.fonts.size.xlarge};
   font-weight: ${({theme}) => theme.fonts.weight.bold};

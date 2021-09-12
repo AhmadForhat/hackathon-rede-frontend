@@ -12,8 +12,8 @@ export const Container = styled.div`
 export const Card = styled.div`
   border-radius: 10px;
   padding: 10px;
-  min-height: 106px;
-  max-height: 106px;
+  min-height: 110px;
+  max-height: 110px;
   width: 98%;
   background: ${({ theme }) => theme.colors.white};
   box-shadow: 0px 0px 0px 2px rgba(0, 0, 0, 0.1);
@@ -23,7 +23,7 @@ export const Title = styled.h1`
   color: ${({ theme }) => theme.colors.ink};
   font: normal normal 700 15px 'Poppins', sans-serif;
   text-align: start;
-  margin: 15px 15px 0;
+  margin: 5px 15px 0;
   display: block;
   display: -webkit-box;
   max-width: 98%;
