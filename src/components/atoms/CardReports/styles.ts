@@ -37,6 +37,10 @@ export const Title = styled.h1`
   margin: 0;
   color: ${({ theme }) => theme.colors.ink};
   font: normal normal 700 15px 'Poppins', sans-serif;
+
+  :first-child {
+    margin-right: 10px;
+  }
 `
 
 export const ContentInfosDate = styled.div`

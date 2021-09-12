@@ -31,18 +31,11 @@ export const ContainerButtons = styled.div`
     gap: 8px;
 `
 
-export const ButtonStyled = styled(Button)<IButtonProps>`
-    svg {
-        margin: ${({ like }) => like ? '-3px 0 0 8px' : '0 0 0 8px'};
-        width: 18px;
-        height: 18px;
-    }
-`
-
 export const ContentDescription = styled.div`
     display: flex;
     align-items: center;
     justify-content: flex-end;
+    padding: 0 20px;
 `
 
 export const Descriptions = styled.div<IButtonProps>`
@@ -57,4 +50,11 @@ export const Descriptions = styled.div<IButtonProps>`
     width: 14px;
     height: 14px;
   }
+`
+
+export const CotainerInfos = styled.div`
+    display: flex;
+    flex-direction: column;
+    padding: 0 20px;
+    gap: 20px;
 `

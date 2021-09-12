@@ -14,5 +14,9 @@ export const ContainerButton = styled.div`
   button {
     max-width: 800px;
     margin: 0 auto;
+
+    svg {
+      margin-left: 10px;
+    }
   }
 `

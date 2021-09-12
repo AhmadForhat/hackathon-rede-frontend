@@ -1,4 +1,5 @@
-import React, { useRef } from 'react'
+import React, { useRef, useState } from 'react'
+import { gql, useMutation } from '@apollo/client'
 
 import Header from 'components/molecules/Header'
 import Card from 'components/atoms/Card'
@@ -9,17 +10,57 @@ import Input from 'components/molecules/Input';
 import Dropzone from 'components/molecules/Drop';
 
 import { FormContainer, ContainerInputs } from './styles'
+import { useHistory } from 'react-router'
+
+const CREATE_POST = gql`
+  mutation createPost(
+    $title: String!
+    $address: String!
+    $comment: String!
+    $image: String!
+  ) {
+    createPost(
+      createPostInput: {
+        title: $title
+        address: $address
+        comment: $comment
+        image: $image
+      }
+    ) {
+      id
+    }
+  }
+`
 
 const RegisterReport: React.FC = () => {
   const formRef = useRef(null)
+  const history = useHistory()
+  const [ errorMessage, setErrorMessage ] = useState('')
+  const [createPost, { loading }] = useMutation(CREATE_POST, {
+    onError(error){
+      setErrorMessage(error.message)
+    }
+  })
+
+  const handleSubmit = async (data: any) => {
+    const result = await createPost({variables: {
+      ...data,
+      image: 'teste'
+    }})
+
+    history.push('/reportes')
+  }
 
   return (
     <Wrapper>
       <Header title="Criar novo report" to="/reportes" />
       <Card hasMarginBottom>
-        <FormContainer ref={formRef} onSubmit={(data) => console.log(data)}>
+        <FormContainer ref={formRef} onSubmit={handleSubmit}>
           <ContainerInputs>
-            <Dropzone name="upload" label="Insira a imagem do reporte" />
+            <Dropzone
+              name="image"
+              label="Insira a imagem do reporte"
+            />
             <Input
               label="Titulo"
               name="title"
@@ -34,7 +75,7 @@ const RegisterReport: React.FC = () => {
             />
             <TextArea
               label="Comentário"
-              name="comentario"
+              name="comment"
               placeholder="escreva um comentário"
               rows={5}
             />

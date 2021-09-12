@@ -13,10 +13,11 @@ import {
   ContainerButtons,
   Content,
   Image,
-  ButtonStyled,
+  CotainerInfos,
   ContentDescription,
   Descriptions
 } from "./styles";
+import FooterButton from "components/molecules/FooterButton";
 
 interface Params {
   id: string;
@@ -41,7 +42,7 @@ const FETCH_POST_QUERY = gql`
         title
         image
         comment
-        adderss
+        address
       }
       createdAt
       username
@@ -71,7 +72,7 @@ const ReportsDetail: React.FC = () => {
       <Header title={data?.state} to="/reportes" />
 
       <Content>
-        <Card hasPadding hasBoxShadow>
+        <Card>
           {data?.photo && <Image src={data.photo} />}
 
           <ContentDescription>
@@ -80,16 +81,18 @@ const ReportsDetail: React.FC = () => {
             </Descriptions>
           </ContentDescription>
 
-          <InfoReport title="Titulo" content={data?.title} />
-          <InfoReport title="Status" content={data?.status} />
-          <InfoReport title="Endereço" content={data?.endereco} />
-          <InfoReport title="Comentário" content={data?.comment} />
+          <CotainerInfos>
+            <InfoReport title="Titulo" content={data?.title} />
+            <InfoReport title="Status" content={data?.status} />
+            <InfoReport title="Endereço" content={data?.endereco} />
+            <InfoReport title="Comentário" content={data?.comment} />
+          </CotainerInfos>
 
           <ContainerButtons>
-            <ButtonStyled>
-              Comentar
-              <MessageCircle />
-            </ButtonStyled>
+          <FooterButton type="submit">
+            Comentar
+            <MessageCircle />
+          </FooterButton>
           </ContainerButtons>
         </Card>
       </Content>

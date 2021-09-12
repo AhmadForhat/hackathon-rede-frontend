@@ -12,7 +12,7 @@ type body = {
   title: string
   image: string
   comment: string
-  adderss: string
+  address: string
 }
 
 export type PostProps = {
@@ -31,7 +31,7 @@ const FETCH_POST_QUERY = gql`
         title
         image
         comment
-        adderss
+        address
       }
       createdAt
       username
@@ -42,7 +42,7 @@ const FETCH_POST_QUERY = gql`
 
 const Reports: React.FC = () => {
   const history = useHistory()
-  const { loading, data, error } = useQuery(FETCH_POST_QUERY)
+  const { loading, data, error } = useQuery(FETCH_POST_QUERY, { pollInterval: 500   })
 
   const handleToCreateReport = () => {
     history.push('/criar-reporte')
