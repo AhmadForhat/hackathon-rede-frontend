@@ -18,7 +18,7 @@ const Drop: React.FC<DropProps> = ({ name, label, ...props }) => {
                     {label}
                 </LabelInput>
             )}
-            <ReactDropzoneInput name={name} />
+            <ReactDropzoneInput name={name} {...props} />
         </Container>
     )
 }

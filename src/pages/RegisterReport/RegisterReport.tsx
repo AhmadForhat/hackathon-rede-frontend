@@ -3,8 +3,8 @@ import React, { useRef } from 'react'
 import Header from 'components/molecules/Header'
 import Card from 'components/atoms/Card'
 import Wrapper from 'components/atoms/Wrapper'
+import TextArea from 'components/molecules/TextArea'
 import FooterButton from 'components/molecules/FooterButton';
-import UploadArea from 'components/molecules/UploadArea';
 import Input from 'components/molecules/Input';
 import Dropzone from 'components/molecules/Drop';
 
@@ -37,6 +37,11 @@ const RegisterReport: React.FC = () => {
               name='address'
               type='text'
               placeholder='adicione um endereço'
+            />
+            <TextArea
+              label='Comentário'
+              name='comentario'
+              rows={5}
             />
           </ContainerInputs>
           <FooterButton type='submit'>
