@@ -1,23 +1,26 @@
 import React from 'react'
+import { useHistory } from 'react-router-dom'
 
-import Button from 'components/atoms/Button'
+import Card from 'components/atoms/Card'
+import Wrapper from 'components/atoms/Wrapper'
 import CardReports from 'components/atoms/CardReports';
 import Header from 'components/molecules/Header';
-
-import {
-  Container,
-  Card,
-  ContentButtonReport,
-} from "./styles";
+import FooterButton from 'components/molecules/FooterButton';
 
 const Reports: React.FC = () => {
+  const history = useHistory()
+
+  const handleToCreateReport = () => {
+    history.push('/criar-reporte')
+  }
+
   return (
-    <Container>
+    <Wrapper>
       <Header
         title='Reportes realizados'
         to='/'
       />
-      <Card>
+      <Card hasPadding>
         <CardReports />
         <CardReports />
         <CardReports />
@@ -25,11 +28,10 @@ const Reports: React.FC = () => {
         <CardReports />
         <CardReports />
       </Card>
-
-      <ContentButtonReport>
-        <Button>Cadastrar Reporte</Button>
-      </ContentButtonReport>
-    </Container>
+      <FooterButton onClick={handleToCreateReport}>
+        Cadastrar Reporte
+      </FooterButton>
+    </Wrapper>
   );
 };
 

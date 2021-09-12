@@ -1,13 +1,5 @@
 import styled from 'styled-components'
 
-export const Container = styled.div`
-  padding: 0;
-  margin: 0;
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-`
-
 export const Card = styled.div`
   border-radius: 20px 20px 0px 0px;
   height: 100%;
@@ -16,6 +8,7 @@ export const Card = styled.div`
   overflow: auto;
   display: flex;
   flex-direction: column;
+  padding-bottom: 20px;
   margin-bottom: 70px;
 `
 

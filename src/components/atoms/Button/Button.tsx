@@ -7,7 +7,7 @@ import {
   ButtonContainer
 } from './styles'
 
-interface ButtonProps extends React.HTMLAttributes<HTMLButtonElement> {
+export interface ButtonProps extends React.HTMLAttributes<HTMLButtonElement> {
   isLoading?: boolean
   disabled?: boolean
   type?: 'button' | 'submit' | 'reset'

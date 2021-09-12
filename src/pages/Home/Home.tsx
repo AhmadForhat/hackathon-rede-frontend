@@ -2,16 +2,13 @@ import React, { useEffect, useState } from 'react'
 import { useHistory } from 'react-router-dom'
 
 import Header from 'components/molecules/Header';
+import FooterButton from 'components/molecules/FooterButton';
 import Map from 'components/atoms/Map';
-import Button from 'components/atoms/Button';
+import Wrapper from 'components/atoms/Wrapper';
+import Card from 'components/atoms/Card'
 import { getLocalStorage } from 'utils'
 
-import {
-  Container,
-  ContainerMap,
-  ContainerButton,
-  Card
-} from './styles'
+import { ContainerMap } from './styles'
 
 const Home: React.FC = () => {
   const [coords, setCoords] = useState({
@@ -36,12 +33,12 @@ const Home: React.FC = () => {
     }
   }, [history])
 
-  const handleReport = () => {
-    history.push('/reports')
+  const handleToReport = () => {
+    history.push('/reportes')
   }
 
   return (
-    <Container>
+    <Wrapper>
       <Header
         title='São Paulo'
         subTitle='Localização'
@@ -66,10 +63,10 @@ const Home: React.FC = () => {
             ]} />
         </ContainerMap>
       </Card>
-      <ContainerButton>
-        <Button onClick={handleReport}>Reportar</Button>
-      </ContainerButton>
-    </Container>
+      <FooterButton onClick={handleToReport}>
+        Reportar
+      </FooterButton>
+    </Wrapper>
   )
 }
 
