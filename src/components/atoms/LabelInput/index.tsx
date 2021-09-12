@@ -2,7 +2,9 @@ import React from 'react';
 
 import { Label } from './styles';
 
-const LabelInput: React.FC = (props) => {
+interface LabelInputProps extends React.LabelHTMLAttributes<HTMLLabelElement>{}
+
+const LabelInput: React.FC<LabelInputProps> = (props) => {
   return <Label {...props}/>;
 }
 

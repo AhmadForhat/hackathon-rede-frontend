@@ -6,10 +6,9 @@ import { easeCubic } from 'd3-ease';
 import ButtonCenterMap from '../ButtonCenterMap';
 
 
-const TOKEN =
-    "pk.eyJ1IjoiY2hyaWdvciIsImEiOiJjazZvZDB3YnAwa3ZoM2RwZ3hoMmZhZjQ0In0.wuifjrANdiGYNz_PMDAiQQ";
+const TOKEN = process.env.REACT_APP_TOKEN_MAP;
 
-interface Marker {
+interface MarkerProps {
     id: string,
     latitude: number,
     longitude: number
@@ -18,7 +17,7 @@ interface Marker {
 interface MapProps {
     initialWithMyPosition?: boolean;
     blockZoom?: boolean;
-    markers?: Marker[]
+    markers?: MarkerProps[]
 }
 
 const settingsBlockZoom = {

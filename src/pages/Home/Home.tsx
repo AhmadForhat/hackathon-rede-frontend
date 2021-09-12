@@ -11,8 +11,6 @@ const Home: React.FC = () => {
   const dispatch = useDispatch();
   const data = useSelector((state: RootState) => state.User);
 
-  console.log(data)
-
 
   useEffect(() => {
     dispatch(UserActions.loadRequest({
@@ -37,7 +35,7 @@ const Home: React.FC = () => {
             latitude: -23.3403654,
             longitude: -46.833826599999995
           },
-      
+
         ]} />
     </div>
   )

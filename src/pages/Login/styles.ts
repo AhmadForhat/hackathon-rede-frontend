@@ -40,24 +40,6 @@ export const FormCustom = styled(Form)`
   flex-direction: column;
 `
 
-export const ContentInput = styled.div`
-  margin-bottom: 20px;
-  display: flex;
-  flex-direction: column;
-`
-
-export const Input = styled.input`
-  border: none;
-  border-bottom: 1px solid ${({ theme }) => theme.colors.ink};
-  color: ${({ theme }) => theme.colors.ink};
-  outline: none;
-  height: 28px;
-
-  &::placeholder {
-    color: ${({ theme }) => theme.colors.grayLight};
-  }
-`
-
 export const ContentResetPassword = styled.div`
   display: flex;
   width: 100%;
@@ -73,27 +55,5 @@ export const LabelMin = styled(Link)`
 
   &:hover {
     color: ${({ theme }) => theme.colors.primary};
-  }
-`
-
-export const Button = styled.button`
-  width: 100%;
-  color: ${({ theme }) => theme.colors.white};
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: ${({ theme }) => theme.colors.primary};
-  border: 1px solid ${({ theme }) => theme.colors.primary};
-  border-radius: 8px;
-  height: 40px;
-  transition: all 0.3s linear;
-  margin: 30px 0 25px;
-  font: normal normal bold 18px 'Poppins', sans-serif;
-  cursor: pointer;
-
-  &:hover {
-    background: ${({ theme }) => theme.colors.white};
-    color: ${({ theme }) => theme.colors.primary};
-    border: 1px solid ${({ theme }) => theme.colors.primary};
   }
 `

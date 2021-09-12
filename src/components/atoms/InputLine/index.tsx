@@ -27,7 +27,7 @@ interface Props {
     value?: string
 }
 
-type InputProps = InputHTMLAttributes<HTMLInputElement> & Props
+export type InputProps = InputHTMLAttributes<HTMLInputElement> & Props
 
 export default function Input({ name, type, value, ...rest }: InputProps) {
     const inputRef = useRef(null)
