@@ -1,5 +1,6 @@
 import React, { useRef, useState } from 'react'
 import { gql, useMutation } from '@apollo/client'
+import { v4 as uuidv4 } from 'uuid';
 
 import Header from 'components/molecules/Header'
 import Card from 'components/atoms/Card'
@@ -8,6 +9,7 @@ import TextArea from 'components/molecules/TextArea'
 import FooterButton from 'components/molecules/FooterButton';
 import Input from 'components/molecules/Input';
 import Dropzone from 'components/molecules/Drop';
+import useFirebase from 'hooks/useFirebase'
 
 import { FormContainer, ContainerInputs } from './styles'
 import { useHistory } from 'react-router'
@@ -33,6 +35,7 @@ const CREATE_POST = gql`
 `
 
 const RegisterReport: React.FC = () => {
+  const { storage } = useFirebase()
   const formRef = useRef(null)
   const history = useHistory()
   const [ errorMessage, setErrorMessage ] = useState('')
@@ -43,10 +46,14 @@ const RegisterReport: React.FC = () => {
   })
 
   const handleSubmit = async (data: any) => {
-    const result = await createPost({variables: {
-      ...data,
-      image: 'https://images.unsplash.com/photo-1628191078376-f31a36c9f2cf?ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1051&q=80'
-    }})
+    storage
+      .child(uuidv4())
+      .put(data.image[0])
+      .then((snapshot) => snapshot.ref.getDownloadURL())
+      .then(resolve => createPost({variables: {
+        ...data,
+        image: resolve
+      }}))
 
     history.push('/reportes')
   }
