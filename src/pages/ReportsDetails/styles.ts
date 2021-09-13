@@ -1,7 +1,5 @@
 import styled from 'styled-components';
 
-import Button from "components/atoms/Button";
-
 interface IButtonProps extends React.HTMLAttributes<HTMLButtonElement> {
     like?: boolean
 }
@@ -15,12 +13,14 @@ export const Content = styled.div`
     display:flex;
     flex-direction: column;
     gap: 8px;
+    padding-bottom: 70px;
 
     width: 100%;
 `
 
 export const Image = styled.img`
     width: 100%;
+    max-height: 250px;
     object-fit: cover;
     height: auto;
 `

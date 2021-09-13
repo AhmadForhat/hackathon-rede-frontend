@@ -25,6 +25,7 @@ import ReportsDetails from "pages/ReportsDetails";
 import RegisterReport from "pages/RegisterReport";
 import Error from 'pages/Error'
 import NotFound from "pages/NotFound";
+import RegisterComment from "pages/RegisterComment";
 
 const App: React.FC = () => {
   return (
@@ -42,7 +43,8 @@ const App: React.FC = () => {
                 <Route isPrivate path="/reportes/:id" component={ReportsDetails} />
                 <Route isPrivate path="/reportes" component={Reports} />
                 <Route isPrivate path="/criar-reporte" component={RegisterReport} />
-                <Route path='/erro' component={Error} />
+                <Route isPrivate path='/criar-comentario/:id' exact component={RegisterComment} />
+                <Route path='/erro' component={Error} />        
                 <Route path="*" component={NotFound} />
               </Switch>
             </Router>

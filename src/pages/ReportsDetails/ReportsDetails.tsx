@@ -1,5 +1,5 @@
 import React from "react";
-import { useParams } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 import { MessageCircle } from "react-feather";
 import { gql, useQuery } from '@apollo/client'
 import moment from "moment";
@@ -7,9 +7,9 @@ import moment from "moment";
 import Card from "components/atoms/Card";
 import Header from "components/molecules/Header";
 import InfoReport from "components/molecules/InfoReport";
+import Wrapper from "components/atoms/Wrapper";
 
 import {
-  Container,
   ContainerButtons,
   Content,
   Image,
@@ -41,10 +41,12 @@ const FETCH_POST_QUERY = gql`
 `;
 
 const ReportsDetail: React.FC = () => {
-  const { id } = useParams<Params>();
+  const history = useHistory()
+  const { id } = useParams<Params>()
 
   const { loading, data, error } = useQuery(FETCH_POST_QUERY, {
     variables: { postId: id },
+    pollInterval: 1000
   })
 
   if(loading) return <h2>...looading</h2>
@@ -52,8 +54,8 @@ const ReportsDetail: React.FC = () => {
   if(error) return <h2>Error</h2>
 
   return (
-    <Container>
-      <Header title={data?.state} to="/reportes" />
+    <Wrapper>
+      <Header title={data.getPost.body.title} to="/reportes" />
 
       <Content>
         <Card>
@@ -68,20 +70,19 @@ const ReportsDetail: React.FC = () => {
           <CotainerInfos>
             <InfoReport title="Usuário" content={data.getPost.username} />
             <InfoReport title="Criado no dia" content={moment(new Date(data.getPost.createdAt)).format('DD/MM/YY')} />
-            <InfoReport title="Titulo" content={data.getPost.body.title} />
             <InfoReport title="Endereço" content={data.getPost.body.address} />
             <InfoReport title="Comentário" content={data.getPost.body.comment} />
           </CotainerInfos>
 
           <ContainerButtons>
-          <FooterButton type="submit">
+          <FooterButton type="submit" onClick={() => history.push(`/criar-comentario/${id}`)}>
             Comentar
             <MessageCircle />
           </FooterButton>
           </ContainerButtons>
         </Card>
       </Content>
-    </Container>
+    </Wrapper>
   );
 };
 
