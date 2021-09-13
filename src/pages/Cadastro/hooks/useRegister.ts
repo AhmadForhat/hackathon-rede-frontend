@@ -5,6 +5,8 @@ import { FormHandles } from '@unform/core';
 import { gql, useMutation } from '@apollo/client'
 
 import {getValidationErrors, setLocalStorage} from 'utils';
+import { useDispatch } from 'react-redux';
+import { loadRequest } from 'store/ducks/User/actions';
 
 const CREATE_USER = gql`
   mutation register(
@@ -31,6 +33,7 @@ const CREATE_USER = gql`
 const useRegister = () => {
   const formRef = useRef<FormHandles>(null);
   const history = useHistory()
+  const dispatch = useDispatch()
   const [errorMessage, setErrorMessage] = useState('')
   const [registerUser, { loading }] = useMutation(CREATE_USER, {
       onError(error){
@@ -59,11 +62,11 @@ const useRegister = () => {
 
       if(result?.data?.register?.token) {
         setLocalStorage('token', result.data.register.token)
+        dispatch(loadRequest(result?.data?.register))
         history.push('/')
       }
 
     } catch (err) {
-
       if (err instanceof Yup.ValidationError) {
         const errors = getValidationErrors(err);
         formRef.current && formRef.current.setErrors(errors);
