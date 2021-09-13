@@ -31,7 +31,9 @@ const reducer = (state = INITIAL_STATE, action: any) => {
 
         case UserTypes.LOAD_DEFAULT:
             return produce(state, (draft) => {
-                draft = INITIAL_STATE;
+                draft.data = {};
+                draft.loading = false;
+                draft.error = false;
             });
 
         default:
