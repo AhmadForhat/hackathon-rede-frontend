@@ -6,10 +6,12 @@ import { PersistGate } from 'redux-persist/integration/react';
 import {
   BrowserRouter as Router,
   Switch,
-  Route,
 } from "react-router-dom";
 
 import { store, persistor } from "store/index";
+
+import Route from './Route'
+
 import themes from 'styles/themes'
 import GlobalStyle from 'styles/GlobalStyles';
 import ApolloProvider from 'Apollo/ApolloProvider'
@@ -34,15 +36,15 @@ const App: React.FC = () => {
             <GlobalStyle />
             <Router>
               <Switch>
-                <Route path="/" exact component={Home} />
-                <Route path="/login" exact component={Login} />
-                <Route path="/cadastro" exact component={Cadastro} />
-                <Route path="/perfil" exact component={Perfil} />
-                <Route path="/reportes/:id" exact component={ReportsDetails} />
-                <Route path="/reportes" exact component={Reports} />
-                <Route path="/criar-reporte" exact component={RegisterReport} />
-                <Route path='/criar-comentario/:id' exact component={RegisterComment} />
-                <Route path='/erro' exact component={Error} />
+                <Route isPrivate path="/" exact component={Home} />
+                <Route path="/login" component={Login} />
+                <Route isPrivate path="/perfil" component={Perfil} />
+                <Route path="/cadastro" component={Cadastro} />
+                <Route isPrivate path="/reportes/:id" component={ReportsDetails} />
+                <Route isPrivate path="/reportes" component={Reports} />
+                <Route isPrivate path="/criar-reporte" component={RegisterReport} />
+                <Route isPrivate path='/criar-comentario/:id' exact component={RegisterComment} />
+                <Route path='/erro' component={Error} />        
                 <Route path="*" component={NotFound} />
               </Switch>
             </Router>

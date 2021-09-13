@@ -1,6 +1,8 @@
 import { useState, useRef } from 'react'
 import * as Yup from 'yup';
 import { useHistory } from 'react-router-dom'
+import { loadRequest } from 'store/ducks/User/actions';
+import { useDispatch } from 'react-redux';
 import { FormHandles } from '@unform/core';
 import { gql, useMutation } from '@apollo/client'
 
@@ -27,6 +29,7 @@ const LOGIN_USER = gql`
 const useLogin = () => {
   const [errorMessage, setErrorMessage] = useState('')
   const history = useHistory()
+  const dispatch = useDispatch()
   const [loginUser, { loading }] = useMutation(LOGIN_USER, {
       onError(error){
         setErrorMessage(error.message)
@@ -52,6 +55,7 @@ const useLogin = () => {
 
       if(result?.data?.login?.token) {
         setLocalStorage('token', result.data.login.token)
+        dispatch(loadRequest(result?.data?.login))
         history.push('/')
       }
 
