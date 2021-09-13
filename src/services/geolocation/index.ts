@@ -1,3 +1,4 @@
+/* eslint-disable import/no-anonymous-default-export */
 import { Get } from 'utils/request'
 
 const TOKEN = process.env.REACT_APP_TOKEN_MAP;
@@ -10,7 +11,7 @@ function GetAddressEndpoint (lat: string, lng: string, token = TOKEN) {
   return `https://api.mapbox.com/geocoding/v5/mapbox.places/${lat} ${lng}.json?access_token=${token}`
 }
 
-function GetCoordinatesFromAddress (address: string) {
+export function GetCoordinatesFromAddress (address: string) {
   const endpoint = GetCoordinatesEndpoint(address)
   return Get(endpoint)
     .then(response => {
@@ -20,17 +21,12 @@ function GetCoordinatesFromAddress (address: string) {
     })
 }
 
-function GetAddresssFromCoordinates (lat: string, lng: string) {
+export function GetAddresssFromCoordinates (lat: string, lng: string) {
   const endpoint = GetAddressEndpoint(lat, lng)
   return Get(endpoint)
     .then(response => {
-      console.log(response)
+      console.log({response: response.features[0]?.plane_name})
       if (!response.features && response.features.length > 0) throw new Error('Endereço inválido')
       return response.features[0]?.plane_name
     })
-}
-
-export default {
-  GetCoordinatesFromAddress,
-  GetAddresssFromCoordinates
 }

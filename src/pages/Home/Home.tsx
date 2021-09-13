@@ -12,8 +12,8 @@ import { ContainerMap } from './styles'
 
 const Home: React.FC = () => {
   const [coords, setCoords] = useState({
-    latitude: NaN,
-    longitude: NaN
+    latitude: 0,
+    longitude: 0
   })
   const history = useHistory()
   useEffect(() => {
@@ -40,8 +40,7 @@ const Home: React.FC = () => {
   return (
     <Wrapper>
       <Header
-        title='São Paulo'
-        subTitle='Localização'
+        title='Localização'
       >
       </Header>
       <Card>
@@ -51,14 +50,9 @@ const Home: React.FC = () => {
             blockZoom
             markers={[
               {
-                id: '2',
-                latitude: -23.3403654,
-                longitude: -46.833826599999995
-              },
-              {
-                id: '3',
-                latitude: -23.3403654,
-                longitude: -46.833826599999995
+                id: '1',
+                latitude: coords.latitude,
+                longitude: coords.longitude
               },
             ]} />
         </ContainerMap>

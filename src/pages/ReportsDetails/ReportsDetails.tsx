@@ -18,6 +18,7 @@ import {
   Descriptions
 } from "./styles";
 import FooterButton from "components/molecules/FooterButton";
+import ImageDefault from "components/atoms/ImageDefault";
 
 interface Params {
   id: string;
@@ -32,6 +33,12 @@ const FETCH_POST_QUERY = gql`
         image
         comment
         address
+      }
+      comments {
+        id
+        createdAt
+        username
+        body
       }
       createdAt
       username
@@ -59,7 +66,7 @@ const ReportsDetail: React.FC = () => {
 
       <Content>
         <Card>
-          {data.getPost.body.image && <Image src={data.getPost.body.image} />}
+          {data.getPost.body.image ? <Image src={data.getPost.body.image} /> : <ImageDefault />}
 
           <ContentDescription>
             <Descriptions>
@@ -73,6 +80,10 @@ const ReportsDetail: React.FC = () => {
             <InfoReport title="Endereço" content={data.getPost.body.address} />
             <InfoReport title="Comentário" content={data.getPost.body.comment} />
           </CotainerInfos>
+
+          {data.getPost.comments.length && data.getPost.comments.map((comment: any) => (
+            <h3 key={comment.id}>{comment.username}</h3>
+          ))}
 
           <ContainerButtons>
           <FooterButton type="submit" onClick={() => history.push(`/criar-comentario/${id}`)}>

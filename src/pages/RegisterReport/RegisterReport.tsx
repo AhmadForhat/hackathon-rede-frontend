@@ -1,6 +1,9 @@
 import React, { useRef, useState } from 'react'
 import { gql, useMutation } from '@apollo/client'
 import { v4 as uuidv4 } from 'uuid';
+import * as Yup from 'yup'
+import { FormHandles } from '@unform/core'
+import { Form } from '@unform/web'
 
 import Header from 'components/molecules/Header'
 import Card from 'components/atoms/Card'
@@ -11,8 +14,9 @@ import Input from 'components/molecules/Input';
 import Dropzone from 'components/molecules/Drop';
 import useFirebase from 'hooks/useFirebase'
 
-import { FormContainer, ContainerInputs } from './styles'
+import { ContainerInputs } from './styles'
 import { useHistory } from 'react-router'
+import { getValidationErrors } from 'utils';
 
 const CREATE_POST = gql`
   mutation createPost(
@@ -36,7 +40,7 @@ const CREATE_POST = gql`
 
 const RegisterReport: React.FC = () => {
   const { storage } = useFirebase()
-  const formRef = useRef(null)
+  const formRef = useRef<FormHandles>(null)
   const history = useHistory()
   const [ errorMessage, setErrorMessage ] = useState('')
   const [createPost, { loading }] = useMutation(CREATE_POST, {
@@ -46,23 +50,48 @@ const RegisterReport: React.FC = () => {
   })
 
   const handleSubmit = async (data: any) => {
-    storage
-      .child(uuidv4())
-      .put(data.image[0])
-      .then((snapshot) => snapshot.ref.getDownloadURL())
-      .then(resolve => createPost({variables: {
-        ...data,
-        image: resolve
-      }}))
+    try {
+      const schema = Yup.object().shape({
+        title: Yup.string().required('Digite um Titulo'),
+        address: Yup.string().required('Digite um endeerço'),
+        comment: Yup.string().required('Digite um comentário'),
+      });
 
-    history.push('/reportes')
+      await schema.validate(data, {
+        abortEarly: false,
+      });
+
+      if(data.image[0]) {
+        storage
+        .child(uuidv4())
+        .put(data.image[0])
+        .then((snapshot) => snapshot.ref.getDownloadURL())
+        .then(resolve => createPost({variables: {
+          ...data,
+          image: resolve
+        }}))
+      } else {
+        createPost({variables: {
+          ...data,
+          image: ''
+        }})
+      }
+
+      history.push('/reportes')
+    } catch (error) {
+      if (error instanceof Yup.ValidationError) {
+        const errors = getValidationErrors(error);
+        formRef.current && formRef.current.setErrors(errors);
+        return;
+      }
+    }
   }
 
   return (
     <Wrapper>
       <Header title="Criar novo report" to="/reportes" />
       <Card hasMarginBottom>
-        <FormContainer ref={formRef} onSubmit={handleSubmit}>
+        <Form ref={formRef} onSubmit={handleSubmit}>
           <ContainerInputs>
             <Dropzone
               name="image"
@@ -88,7 +117,7 @@ const RegisterReport: React.FC = () => {
             />
           </ContainerInputs>
           <FooterButton type="submit">Enviar</FooterButton>
-        </FormContainer>
+        </Form>
       </Card>
     </Wrapper>
   );
