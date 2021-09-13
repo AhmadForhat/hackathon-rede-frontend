@@ -2,6 +2,9 @@ import React, { useState } from 'react'
 import { useLocation } from 'react-router-dom'
 import { Menu as MenuIcon, X as CloseIcon } from 'react-feather'
 
+import { useDispatch } from 'react-redux'
+import { loadDefault } from 'store/ducks/User/actions'
+
 import Link from 'components/atoms/Link'
 
 import {
@@ -12,7 +15,8 @@ import {
 
 type optionsProps = {
   to: string,
-  text: React.ReactNode
+  text: React.ReactNode,
+  logoff?: boolean
 }
 
 interface MenuHamburgerProps extends React.HTMLAttributes<HTMLDivElement> {
@@ -22,6 +26,7 @@ interface MenuHamburgerProps extends React.HTMLAttributes<HTMLDivElement> {
 const MenuHamburger: React.FC<MenuHamburgerProps> = ({
   options
 }) => {
+  const dispatch = useDispatch()
   const [isOpen, setOpen] = useState(false)
   const { pathname } = useLocation()
 
@@ -33,13 +38,18 @@ const MenuHamburger: React.FC<MenuHamburgerProps> = ({
         </ButtonMenu>
         <ContainerOptions>
           {options.map(option => (
-              <Link
-                key={option.to}
-                to={option.to}
-                actived={pathname === option.to}
-              >
-                {option.text}
-              </Link>
+            <Link
+              key={option.to}
+              to={option.to}
+              actived={pathname === option.to}
+              onClick={() => {
+                if (option?.logoff) {
+                  dispatch(loadDefault())
+                }
+              }}
+            >
+              {option.text}
+            </Link>
           ))}
         </ContainerOptions>
       </Container>

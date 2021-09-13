@@ -12,12 +12,20 @@ import {
 } from "./styles";
 import Wrapper from 'components/atoms/Wrapper';
 import Card from 'components/atoms/Card';
+import { useDispatch } from 'react-redux';
+import { loadDefault } from 'store/ducks/User/actions';
 
 const Perfil: React.FC = () => {
   const history = useHistory()
+  const dispatch = useDispatch()
+
 
   const handleRedirect = (to: string) => {
     history.push(to)
+  }
+
+  const handleLogoff = () => {
+    dispatch(loadDefault())
   }
   return (
     <Wrapper>
@@ -39,7 +47,7 @@ const Perfil: React.FC = () => {
       </Section>
 
       <ContentButton>
-        <ButtonLogout>
+        <ButtonLogout onClick={handleLogoff}>
           <LogOut size='16px' /> Deslogar
         </ButtonLogout>
       </ContentButton>

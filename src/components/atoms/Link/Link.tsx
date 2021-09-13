@@ -4,7 +4,8 @@ import { LinkContainer } from './styles'
 
 interface LinkProps {
   to: string;
-  actived?: boolean
+  actived?: boolean,
+  onClick?:any
 }
 
 const Link: React.FC<LinkProps> = ({

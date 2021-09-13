@@ -33,7 +33,12 @@ const options = [
   {
     to: '/perfil',
     text: 'Perfil'
-  }
+  },
+  {
+    to: '/login',
+    text: 'Sair',
+    logoff: true
+  },
 ]
 
 const Header: React.FC<HeaderProps> = ({
