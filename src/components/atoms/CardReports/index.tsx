@@ -23,7 +23,9 @@ const CardReports: React.FC<PostProps> = ({
   id,
   username,
   createdAt,
-  commentCount
+  commentCount,
+  text,
+  hasClick=true
 }) => {
   const history = useHistory()
 
@@ -31,19 +33,22 @@ const CardReports: React.FC<PostProps> = ({
     history.push(`/reportes/${id}`)
   }
   return (
-    <Container onClick={() => handleClick(id)}>
+    <Container hasClick={hasClick} onClick={() => hasClick && handleClick(id)}>
       <Card>
         <ContainerTitles>
-          <Title>{body.title}</Title>
+          {body?.title && <Title>{body.title}</Title>}
           <Title>{username}</Title>
         </ContainerTitles>
         <ContentInfosDate>
-          <DescriptionDate>
-            <Clock /> {moment(new Date(createdAt)).format('DD/MM')}
-          </DescriptionDate>
-          <Comments>
+          {createdAt && (
+            <DescriptionDate>
+              <Clock /> {moment(new Date(createdAt)).format('DD/MM')}
+            </DescriptionDate>
+          )}
+          {commentCount && <Comments>
             <MessageCircle /> {commentCount}
-          </Comments>
+          </Comments>}
+          {text && text}
         </ContentInfosDate>
       </Card>
     </Container>

@@ -50,6 +50,7 @@ export const ButtonMenu = styled.button<ButtonMenuProps>`
   right: 0;
   width: fit-content;
   animation: ${fadeInFromNone} 0.5s ease-out;
+  z-index: 1700;
 `
 
 export const ContainerOptions = styled.div`

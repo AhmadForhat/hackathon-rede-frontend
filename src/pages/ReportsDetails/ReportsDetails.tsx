@@ -19,6 +19,8 @@ import {
 } from "./styles";
 import FooterButton from "components/molecules/FooterButton";
 import ImageDefault from "components/atoms/ImageDefault";
+import CardReports from "components/atoms/CardReports";
+import LabelInput from "components/atoms/LabelInput";
 
 interface Params {
   id: string;
@@ -62,7 +64,7 @@ const ReportsDetail: React.FC = () => {
 
   return (
     <Wrapper>
-      <Header title={data.getPost.body.title} to="/reportes" />
+      <Header fixed title={data.getPost.body.title} to="/reportes" />
 
       <Content>
         <Card>
@@ -79,11 +81,22 @@ const ReportsDetail: React.FC = () => {
             <InfoReport title="Criado no dia" content={moment(new Date(data.getPost.createdAt)).format('DD/MM/YY')} />
             <InfoReport title="Endereço" content={data.getPost.body.address} />
             <InfoReport title="Comentário" content={data.getPost.body.comment} />
-          </CotainerInfos>
-
-          {data.getPost.comments.length && data.getPost.comments.map((comment: any) => (
-            <h3 key={comment.id}>{comment.username}</h3>
-          ))}
+            {data.getPost.comments.length ? (
+              <>
+                <LabelInput>Comentários</LabelInput>
+                {data.getPost.comments.map((comment: any) => (
+                  <CardReports
+                    key={comment.id}
+                    id={comment.id}
+                    username={comment.username}
+                    createdAt={comment.ceatedAt}
+                    text={comment.body}
+                    hasClick={false}
+                  />
+                ))}
+              </>
+            ) : null}
+            </CotainerInfos>
 
           <ContainerButtons>
           <FooterButton type="submit" onClick={() => history.push(`/criar-comentario/${id}`)}>

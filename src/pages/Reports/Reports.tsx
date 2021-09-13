@@ -17,10 +17,12 @@ type body = {
 
 export type PostProps = {
   id: string
-  body: body
-  createdAt: string
-  username: string
-  commentCount: string
+  body?: body
+  createdAt?: string
+  username?: string
+  commentCount?: string
+  text?: string
+  hasClick?: boolean
 }
 
 const FETCH_POST_QUERY = gql`

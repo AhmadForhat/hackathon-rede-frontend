@@ -15,6 +15,7 @@ interface HeaderProps {
   subTitle?: React.ReactNode
   to?: string
   hiddenMenu?: boolean
+  fixed?: boolean
 }
 
 const options = [
@@ -46,12 +47,13 @@ const Header: React.FC<HeaderProps> = ({
   subTitle,
   children,
   to,
-  hiddenMenu
+  hiddenMenu,
+  fixed
 }) => {
   return (
     <>
       {!hiddenMenu && <Menu options={options} />}
-      <Container>
+      <Container fixed={fixed}>
         {to && <Link to={to}><ArrowLeft size='16px'/> Voltar</Link>}
         {subTitle && <SubTitle>{subTitle}</SubTitle>}
         <Title>{title}</Title>

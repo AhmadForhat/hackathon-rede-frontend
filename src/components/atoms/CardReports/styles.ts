@@ -1,16 +1,20 @@
 import styled from 'styled-components';
 
-export const Container = styled.div`
+interface ContainerProps {
+  hasClick?: boolean
+}
+
+export const Container = styled.div<ContainerProps>`
   padding: 0;
   margin: 0;
   display: flex;
   flex-direction: column;
   align-items: center;
-  cursor: pointer;
-  transition: all .5s ease-in-out;
+  cursor: ${({hasClick}) => hasClick && 'pointer'};
+  transition: ${({hasClick}) => hasClick && 'all .5s ease-in-out'};
 
   :hover {
-    transform: scale(1.05);
+    transform: ${({hasClick}) => hasClick && 'scale(1.05)'};
   }
 `
 

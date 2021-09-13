@@ -1,10 +1,19 @@
 import styled from 'styled-components'
 
-export const Container = styled.div`
+interface ContainerProps {
+  fixed?: boolean
+}
+
+export const Container = styled.div<ContainerProps>`
+  position: ${({fixed}) => fixed ? 'sticky' : 'none'};
+  top: ${({fixed}) => fixed ? '0' : 'none'};
+  z-index: 1200;
+  background-color: ${({ theme }) => theme.colors.white};
   display: flex;
   flex-direction: column;
   padding: 20px;
   gap: 5px;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 2px 0px;
 `
 
 export const SubTitle = styled.h3`
