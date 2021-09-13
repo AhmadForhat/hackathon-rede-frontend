@@ -42,7 +42,7 @@ const FETCH_POST_QUERY = gql`
 
 const Reports: React.FC = () => {
   const history = useHistory()
-  const { loading, data, error } = useQuery(FETCH_POST_QUERY, { pollInterval: 500   })
+  const { loading, data, error } = useQuery(FETCH_POST_QUERY, { pollInterval: 1000 })
 
   const handleToCreateReport = () => {
     history.push('/criar-reporte')

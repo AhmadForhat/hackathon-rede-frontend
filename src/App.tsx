@@ -23,6 +23,7 @@ import ReportsDetails from "pages/ReportsDetails";
 import RegisterReport from "pages/RegisterReport";
 import Error from 'pages/Error'
 import NotFound from "pages/NotFound";
+import RegisterComment from "pages/RegisterComment";
 
 const App: React.FC = () => {
   return (
@@ -35,11 +36,12 @@ const App: React.FC = () => {
               <Switch>
                 <Route path="/" exact component={Home} />
                 <Route path="/login" exact component={Login} />
-                <Route path="/perfil" exact component={Perfil} />
                 <Route path="/cadastro" exact component={Cadastro} />
+                <Route path="/perfil" exact component={Perfil} />
                 <Route path="/reportes/:id" exact component={ReportsDetails} />
                 <Route path="/reportes" exact component={Reports} />
                 <Route path="/criar-reporte" exact component={RegisterReport} />
+                <Route path='/criar-comentario/:id' exact component={RegisterComment} />
                 <Route path='/erro' exact component={Error} />
                 <Route path="*" component={NotFound} />
               </Switch>
